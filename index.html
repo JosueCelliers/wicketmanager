@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wicket Manager — free cricket management game for Android</title>
+<meta name="description" content="Build a squad, sign sponsors, and play every ball. Wicket Manager is a cricket management sim for Android — join the free beta.">
+<meta property="og:title" content="Wicket Manager — cricket management game">
+<meta property="og:description" content="Build a squad. Sign sponsors. Play every ball. Free beta on Android.">
+<meta property="og:image" content="https://josuecelliers.github.io/wicketmanager/img/icon.png">
+<meta property="og:type" content="website">
+<link rel="icon" href="img/icon.png">
+<style>
+  :root {
+    --deep: #0d1f17; --pitch: #14532d; --mid: #166534; --leaf: #22c55e;
+    --cream: #f5f0e1; --gold: #eab308; --ink: #0a1710;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--deep); color: var(--cream);
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap { max-width: 560px; margin: 0 auto; padding: 0 20px; }
+  header {
+    background: linear-gradient(160deg, var(--pitch) 0%, var(--deep) 90%);
+    padding: 48px 0 36px; text-align: center;
+  }
+  header img.icon {
+    width: 108px; height: 108px; border-radius: 26px;
+    box-shadow: 0 10px 34px rgba(0,0,0,.45);
+  }
+  h1 { font-size: 2.1rem; font-weight: 900; margin-top: 18px; letter-spacing: -0.5px; }
+  .tagline { color: #cde7d2; font-size: 1.05rem; margin-top: 6px; }
+  .badge {
+    display: inline-block; margin-top: 14px; padding: 5px 14px; border-radius: 999px;
+    background: rgba(234,179,8,.14); color: var(--gold); border: 1px solid rgba(234,179,8,.45);
+    font-weight: 700; font-size: .85rem; letter-spacing: .4px;
+  }
+  section { padding: 34px 0 6px; }
+  h2 { font-size: 1.3rem; font-weight: 800; margin-bottom: 14px; }
+  .steps { counter-reset: step; display: flex; flex-direction: column; gap: 12px; }
+  .step {
+    background: #11291d; border: 1px solid #1e4230; border-radius: 16px; padding: 16px 16px 16px 58px;
+    position: relative;
+  }
+  .step::before {
+    counter-increment: step; content: counter(step);
+    position: absolute; left: 16px; top: 16px; width: 30px; height: 30px;
+    background: var(--gold); color: var(--ink); font-weight: 900; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center; font-size: 1rem;
+  }
+  .step p { font-size: .95rem; color: #cde7d2; margin-top: 2px; }
+  .step strong { color: var(--cream); font-size: 1.02rem; }
+  .btn {
+    display: block; text-align: center; text-decoration: none; font-weight: 800;
+    border-radius: 14px; padding: 14px 18px; margin-top: 12px; font-size: 1rem;
+  }
+  .btn-gold { background: var(--gold); color: var(--ink); }
+  .btn-green { background: var(--mid); color: var(--cream); border: 1px solid #2c7a4b; }
+  .btn-ghost { background: transparent; color: var(--cream); border: 1px solid #2c7a4b; }
+  .video {
+    position: relative; width: 100%; aspect-ratio: 16 / 9; border-radius: 16px; overflow: hidden;
+    border: 1px solid #1e4230; background: #000;
+  }
+  .video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+  .shots { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 8px; }
+  .shots img {
+    width: 31%; min-width: 140px; border-radius: 14px; border: 1px solid #1e4230;
+  }
+  .features { display: flex; flex-direction: column; gap: 8px; font-size: .97rem; color: #cde7d2; }
+  .features span { color: var(--leaf); font-weight: 700; margin-right: 6px; }
+  footer {
+    margin-top: 44px; padding: 26px 0 40px; border-top: 1px solid #1e4230;
+    text-align: center; font-size: .85rem; color: #7fa98c;
+  }
+  footer a { color: #a7cbb2; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <img class="icon" src="img/icon.png" alt="Wicket Manager icon">
+    <h1>Wicket Manager</h1>
+    <div class="tagline">Build a squad. Sign sponsors. Play every ball.</div>
+    <div class="badge">FREE BETA · ANDROID</div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <section>
+    <h2>Join the beta in 3 taps</h2>
+    <div class="steps">
+      <div class="step">
+        <strong>Join the tester group</strong>
+        <p>Tap "Join group" — this unlocks the beta for your Google account.</p>
+        <a class="btn btn-gold" href="https://groups.google.com/g/wicket-manager" target="_blank" rel="noopener">Join the tester group</a>
+      </div>
+      <div class="step">
+        <strong>Become a tester</strong>
+        <p>Same Google account — accept the invite on this page.</p>
+        <a class="btn btn-gold" href="https://play.google.com/apps/testing/com.wicketempire.wicketmanager" target="_blank" rel="noopener">Open the beta page</a>
+      </div>
+      <div class="step">
+        <strong>Install from Google Play</strong>
+        <p>The beta page gives you the download link. That's it — you're in.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Watch the trailer</h2>
+    <div class="video">
+      <iframe src="https://www.youtube-nocookie.com/embed/txwW8WuTvPg" title="Wicket Manager beta trailer"
+        loading="lazy" allow="accelerometer; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+    </div>
+  </section>
+
+  <section>
+    <h2>What you get</h2>
+    <div class="features">
+      <div><span>▸</span>Ball-by-ball matches — call the toss, pick every bowler, survive the rain</div>
+      <div><span>▸</span>IPL-style player auctions in franchise mode</div>
+      <div><span>▸</span>Contracts, sponsors, injuries, form, and a board watching your every result</div>
+      <div><span>▸</span>A youth academy where nobodies become legends</div>
+      <div><span>▸</span>T10, T20 and ODI formats · 80+ achievements · completely free</div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Screenshots</h2>
+    <div class="shots">
+      <img src="img/12-auction-bidding.jpg" alt="Auction bidding war" loading="lazy">
+      <img src="img/09-live-six.jpg" alt="Live match — six!" loading="lazy">
+      <img src="img/10-victory.jpg" alt="Victory celebration" loading="lazy">
+    </div>
+  </section>
+
+  <section>
+    <h2>Talk to the dev</h2>
+    <p style="color:#cde7d2; font-size:.97rem;">Wicket Manager is built solo by Muppetdev. Bugs, ideas, feature requests — the Discord is where the game gets shaped.</p>
+    <a class="btn btn-green" href="https://discord.gg/gq6vCsMCK2" target="_blank" rel="noopener">Join the Discord</a>
+    <a class="btn btn-ghost" href="https://www.youtube.com/@MuppetDevS" target="_blank" rel="noopener">YouTube — dev videos &amp; shorts</a>
+  </section>
+
+  <footer>
+    © 2026 WicketEmpire ·
+    <a href="https://sites.google.com/view/wicketmanager-privacy/home" target="_blank" rel="noopener">Privacy policy</a> ·
+    <a href="https://www.reddit.com/r/cricket_manager/" target="_blank" rel="noopener">r/cricket_manager</a>
+  </footer>
+
+</div>
+
+</body>
+</html>
