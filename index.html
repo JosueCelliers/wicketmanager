@@ -4,159 +4,339 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Wicket Empire — free cricket manager game for Android (2026)</title>
-<meta name="description" content="A new cricket game for Android: ball-by-ball matches, live auctions and a career where you run a club, a T20 franchise and your country at once. Free.">
-<meta property="og:title" content="Wicket Empire — free cricket management game, career mode out now">
-<meta property="og:description" content="Club, franchise and country — all at once. Ball-by-ball cricket management, free on Android.">
-<meta property="og:image" content="https://josuecelliers.github.io/wicketmanager/img/icon.png">
+<meta name="description" content="Wicket Empire is a new cricket manager game for Android: play every ball, win live auctions against rival owners, and run a club, a T20 franchise and your country in one 50-year career. Free.">
+<meta property="og:title" content="Wicket Empire — free cricket manager game, career mode out now">
+<meta property="og:description" content="Play every ball. Win the auction. Run a club, a franchise and your country at once. Free on Android.">
+<meta property="og:image" content="https://josuecelliers.github.io/wicketmanager/img/og-card.jpg">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://josuecelliers.github.io/wicketmanager/">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="google-site-verification" content="cghVPHrKABChEqsuka6rbpq728eFWzmhYoL1--u2SB4">
+<meta name="theme-color" content="#0d1f17">
 <link rel="icon" href="img/icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --deep: #0d1f17; --pitch: #14532d; --mid: #166534; --leaf: #22c55e;
-    --cream: #f5f0e1; --gold: #eab308; --ink: #0a1710;
+    --deep: #081410; --pitch: #0d1f17; --field: #14532d; --mid: #166534; --leaf: #22c55e;
+    --cream: #f5f0e1; --cream-dim: #cfe0d3; --gold: #f5b82e; --gold-deep: #d99b12; --leather: #c0161b;
+    --ink: #0a1710; --line: rgba(245,240,225,0.12);
+    --display: "Barlow Condensed", "Arial Narrow", Impact, sans-serif;
+    --body: "Barlow", "Segoe UI", Roboto, Arial, sans-serif;
   }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body {
-    background: var(--deep); color: var(--cream);
-    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-    line-height: 1.55;
-  }
-  .wrap { max-width: 560px; margin: 0 auto; padding: 0 20px; }
-  header {
-    background: linear-gradient(160deg, var(--pitch) 0%, var(--deep) 90%);
-    padding: 48px 0 36px; text-align: center;
-  }
-  header img.icon {
-    width: 108px; height: 108px; border-radius: 26px;
-    box-shadow: 0 10px 34px rgba(0,0,0,.45);
-  }
-  h1 { font-size: 2.1rem; font-weight: 900; margin-top: 18px; letter-spacing: -0.5px; }
-  .tagline { color: #cde7d2; font-size: 1.05rem; margin-top: 6px; }
-  .badge {
-    display: inline-block; margin-top: 14px; padding: 5px 14px; border-radius: 999px;
-    background: rgba(234,179,8,.14); color: var(--gold); border: 1px solid rgba(234,179,8,.45);
-    font-weight: 700; font-size: .85rem; letter-spacing: .4px;
-  }
-  section { padding: 34px 0 6px; }
-  h2 { font-size: 1.3rem; font-weight: 800; margin-bottom: 14px; }
-  .steps { counter-reset: step; display: flex; flex-direction: column; gap: 12px; }
-  .step {
-    background: #11291d; border: 1px solid #1e4230; border-radius: 16px; padding: 16px 16px 16px 58px;
-    position: relative;
-  }
-  .step::before {
-    counter-increment: step; content: counter(step);
-    position: absolute; left: 16px; top: 16px; width: 30px; height: 30px;
-    background: var(--gold); color: var(--ink); font-weight: 900; border-radius: 50%;
-    display: flex; align-items: center; justify-content: center; font-size: 1rem;
-  }
-  .step p { font-size: .95rem; color: #cde7d2; margin-top: 2px; }
-  .step strong { color: var(--cream); font-size: 1.02rem; }
-  .btn {
-    display: block; text-align: center; text-decoration: none; font-weight: 800;
-    border-radius: 14px; padding: 14px 18px; margin-top: 12px; font-size: 1rem;
-  }
-  .btn-gold { background: var(--gold); color: var(--ink); }
-  .btn-green { background: var(--mid); color: var(--cream); border: 1px solid #2c7a4b; }
-  .btn-ghost { background: transparent; color: var(--cream); border: 1px solid #2c7a4b; }
-  .video {
-    position: relative; width: 100%; aspect-ratio: 16 / 9; border-radius: 16px; overflow: hidden;
-    border: 1px solid #1e4230; background: #000;
-  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--pitch); color: var(--cream); font-family: var(--body); line-height: 1.55; overflow-x: hidden; }
+  body::before { content: ""; position: fixed; inset: -20%; pointer-events: none; z-index: 0;
+    background: repeating-linear-gradient(115deg, rgba(255,255,255,0.035) 0 5px, rgba(255,255,255,0) 5px 24px); }
+  a { color: inherit; }
+  img { max-width: 100%; display: block; }
+  .wrap { position: relative; z-index: 1; max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+  h1, h2, h3, .display { font-family: var(--display); font-weight: 800; letter-spacing: -0.01em; line-height: 0.95; text-transform: uppercase; }
+  h2 { font-size: clamp(38px, 6vw, 68px); }
+  h3 { font-size: clamp(26px, 3.4vw, 38px); }
+  .kicker { display: inline-flex; align-items: center; gap: 10px; font-family: var(--display); font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; font-size: 13px; color: var(--gold); }
+  .kicker::before { content: ""; width: 26px; height: 3px; background: var(--gold); border-radius: 2px; }
+  p.lead { font-size: clamp(17px, 1.6vw, 20px); color: var(--cream-dim); max-width: 60ch; }
+
+  /* nav */
+  nav { position: sticky; top: 0; z-index: 20; backdrop-filter: blur(10px); background: rgba(8,20,16,0.72); border-bottom: 1px solid var(--line); }
+  nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+  .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; font-family: var(--display); font-weight: 800; font-size: 22px; letter-spacing: 0.02em; text-transform: uppercase; }
+  .brand img { width: 34px; height: 34px; border-radius: 9px; }
+  .brand b { color: var(--gold); font-weight: 800; }
+  nav .links { display: flex; gap: 22px; font-weight: 600; font-size: 15px; }
+  nav .links a { text-decoration: none; color: var(--cream-dim); }
+  nav .links a:hover { color: var(--cream); }
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; text-decoration: none; font-weight: 700; border-radius: 14px; padding: 14px 22px; font-size: 16px; transition: transform .08s ease, filter .15s ease; }
+  .btn:active { transform: translateY(2px); }
+  .btn-gold { background: linear-gradient(120deg, var(--gold), #ffd166); color: var(--ink); box-shadow: 0 6px 0 rgba(0,0,0,0.28), 0 14px 40px rgba(245,184,46,0.22); }
+  .btn-gold:hover { filter: brightness(1.05); }
+  .btn-ghost { border: 1px solid rgba(245,240,225,0.35); color: var(--cream); background: rgba(255,255,255,0.04); }
+  .btn-ghost:hover { background: rgba(255,255,255,0.08); }
+  .btn-sm { padding: 10px 16px; font-size: 14px; border-radius: 11px; }
+  .btn .play { width: 18px; height: 18px; }
+
+  /* hero */
+  .hero { position: relative; padding: clamp(56px, 9vw, 110px) 0 40px; overflow: hidden; }
+  .hero::after { content: ""; position: absolute; right: -20%; top: -30%; width: 70vw; height: 70vw; max-width: 900px; max-height: 900px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(22,101,52,0.55) 0%, rgba(22,101,52,0) 62%); pointer-events: none; }
+  .hero .wrap { display: grid; grid-template-columns: 1.15fr 1fr; gap: 40px; align-items: center; position: relative; z-index: 1; }
+  .hero h1 { font-size: clamp(56px, 8.4vw, 118px); margin: 14px 0 18px; }
+  .hero h1 em { font-style: normal; color: var(--gold); }
+  .cta-row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 28px; }
+  .fine { margin-top: 14px; font-size: 14px; color: var(--cream-dim); opacity: .85; }
+  .stage { position: relative; height: clamp(440px, 46vw, 620px); }
+  .phone { position: absolute; width: clamp(170px, 19vw, 250px); aspect-ratio: 720 / 1544; border-radius: 34px; border: 7px solid #07120c; background: #000; overflow: hidden;
+    box-shadow: 0 40px 90px rgba(0,0,0,0.6), inset 0 0 0 1px rgba(255,255,255,0.06); }
+  .phone img { width: 100%; height: 100%; object-fit: cover; }
+  .stage .p1 { left: 18%; top: 4%; z-index: 2; transform: rotate(-4deg); }
+  .stage .p2 { left: 52%; top: 12%; z-index: 1; transform: rotate(6deg) scale(.94); opacity: .95; }
+  .stage .tag { position: absolute; z-index: 3; background: var(--deep); border: 1px solid rgba(245,184,46,0.5); color: var(--gold); font-family: var(--display); font-weight: 800; letter-spacing: .06em; text-transform: uppercase; font-size: 15px; padding: 8px 12px; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,.4); white-space: nowrap; }
+  .stage .t1 { left: 4%; top: 58%; }
+  .stage .t2 { left: 58%; top: 76%; }
+
+  /* stat strip */
+  .strip { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: rgba(8,20,16,0.55); }
+  .strip .wrap { display: grid; grid-template-columns: repeat(5, 1fr); }
+  .strip div { padding: 18px 12px; text-align: center; border-left: 1px solid var(--line); }
+  .strip div:first-child { border-left: 0; }
+  .strip b { display: block; font-family: var(--display); font-weight: 800; font-size: 30px; color: var(--gold); line-height: 1; }
+  .strip span { font-size: 13px; color: var(--cream-dim); letter-spacing: .04em; text-transform: uppercase; font-weight: 600; }
+
+  section { padding: clamp(60px, 8vw, 110px) 0; }
+  .sec-head { max-width: 760px; margin-bottom: 36px; }
+  .sec-head h2 { margin: 12px 0 14px; }
+
+  /* trailer */
+  .video { position: relative; width: 100%; aspect-ratio: 16 / 9; border-radius: 22px; overflow: hidden; background: #000;
+    border: 1px solid rgba(245,240,225,0.14); box-shadow: 0 30px 80px rgba(0,0,0,0.55); }
   .video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
-  .shots { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 8px; }
-  .shots img {
-    width: 31%; min-width: 140px; border-radius: 14px; border: 1px solid #1e4230;
+
+  /* features */
+  .feature { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(28px, 6vw, 80px); align-items: center; padding: clamp(40px, 6vw, 80px) 0; border-top: 1px solid var(--line); }
+  .feature:first-of-type { border-top: 0; }
+  .feature.flip .copy { order: 2; }
+  .feature ul { list-style: none; margin-top: 22px; display: grid; gap: 10px; }
+  .feature li { position: relative; padding-left: 28px; color: var(--cream-dim); font-size: 17px; }
+  .feature li::before { content: ""; position: absolute; left: 0; top: 9px; width: 14px; height: 14px; border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, #ff6b6b, var(--leather) 70%); box-shadow: 0 2px 6px rgba(0,0,0,.5); }
+  .feature .shot { display: flex; justify-content: center; }
+  .feature .phone { position: relative; width: clamp(220px, 24vw, 290px); transform: rotate(-2deg); }
+  .feature.flip .phone { transform: rotate(2deg); }
+  .callout { display: inline-block; margin-top: 18px; font-family: var(--display); font-weight: 800; text-transform: uppercase; letter-spacing: .04em; font-size: 22px; color: var(--gold); border-left: 4px solid var(--gold); padding-left: 12px; }
+
+  /* steps */
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; counter-reset: step; }
+  .step { background: rgba(255,255,255,0.035); border: 1px solid var(--line); border-radius: 18px; padding: 26px 22px 24px; position: relative; }
+  .step::before { counter-increment: step; content: "0" counter(step); font-family: var(--display); font-weight: 800; font-size: 46px; color: var(--gold); line-height: 1; display: block; margin-bottom: 12px; }
+  .step h3 { font-size: 26px; margin-bottom: 8px; }
+  .step p { color: var(--cream-dim); font-size: 16px; }
+
+  /* details grid */
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .cell { background: rgba(8,20,16,0.6); border: 1px solid var(--line); border-radius: 16px; padding: 20px; }
+  .cell b { display: block; font-family: var(--display); font-weight: 800; text-transform: uppercase; letter-spacing: .04em; font-size: 22px; color: var(--cream); margin-bottom: 6px; }
+  .cell span { color: var(--cream-dim); font-size: 15px; }
+
+  /* screens strip */
+  .screens { display: flex; gap: 18px; overflow-x: auto; padding: 10px 4px 24px; scroll-snap-type: x mandatory; }
+  .screens .phone { position: relative; flex: 0 0 auto; width: 210px; scroll-snap-align: start; transform: none; }
+  .screens::-webkit-scrollbar { height: 8px; } .screens::-webkit-scrollbar-thumb { background: rgba(255,255,255,.15); border-radius: 4px; }
+
+  /* community */
+  .community { background: linear-gradient(160deg, var(--field) 0%, var(--pitch) 70%); border-top: 1px solid var(--line); }
+  .community .wrap { display: grid; grid-template-columns: 1.2fr 1fr; gap: 40px; align-items: center; }
+  .links-row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 22px; }
+  .dev { display: flex; align-items: center; gap: 14px; background: rgba(8,20,16,0.55); border: 1px solid var(--line); border-radius: 18px; padding: 18px; }
+  .dev img { width: 64px; height: 64px; border-radius: 16px; }
+  .dev small { display: block; color: var(--cream-dim); font-size: 14px; }
+
+  footer { border-top: 1px solid var(--line); padding: 28px 0 44px; font-size: 14px; color: var(--cream-dim); }
+  footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  footer a { color: var(--cream-dim); }
+
+  /* reveal */
+  .rv { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
+  .rv.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { .rv { opacity: 1; transform: none; transition: none; } html { scroll-behavior: auto; } }
+
+  @media (max-width: 860px) {
+    nav .links { display: none; }
+    .hero .wrap { grid-template-columns: 1fr; gap: 24px; }
+    .stage { height: clamp(380px, 95vw, 520px); }
+    .stage .p1 { left: 8%; } .stage .p2 { left: 52%; }
+    .stage .phone { width: clamp(150px, 40vw, 220px); }
+    .strip .wrap { grid-template-columns: repeat(2, 1fr); }
+    .strip div:nth-child(3) { border-left: 0; } .strip div:nth-child(5) { grid-column: span 2; border-left: 0; border-top: 1px solid var(--line); }
+    .feature, .feature.flip { grid-template-columns: 1fr; }
+    .feature.flip .copy { order: 0; }
+    .feature .shot { order: 2; }
+    .steps, .grid { grid-template-columns: 1fr; }
+    .community .wrap { grid-template-columns: 1fr; }
   }
-  .features { display: flex; flex-direction: column; gap: 8px; font-size: .97rem; color: #cde7d2; }
-  .features span { color: var(--leaf); font-weight: 700; margin-right: 6px; }
-  footer {
-    margin-top: 44px; padding: 26px 0 40px; border-top: 1px solid #1e4230;
-    text-align: center; font-size: .85rem; color: #7fa98c;
-  }
-  footer a { color: #a7cbb2; }
 </style>
 </head>
 <body>
 
-<header>
+<nav>
   <div class="wrap">
-    <img class="icon" src="img/icon.png" alt="Wicket Empire icon">
-    <h1>Wicket Empire</h1>
-    <div class="tagline">Club. Franchise. Country. Run all three — and try not to get sacked from any of them.</div>
-    <div class="badge">OUT NOW ON GOOGLE PLAY · FREE</div>
+    <a class="brand" href="#top"><img src="img/icon.png" alt="">Wicket <b>Empire</b></a>
+    <div class="links"><a href="#trailer">Trailer</a><a href="#features">Features</a><a href="#career">Career</a><a href="#community">Community</a></div>
+    <a class="btn btn-gold btn-sm" href="https://play.google.com/store/apps/details?id=com.wicketempire.wicketmanager" target="_blank" rel="noopener"><svg class="play" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>Get it free</a>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <span class="kicker">New · Free on Google Play</span>
+      <h1>Every ball<br>is <em>yours.</em></h1>
+      <p class="lead">Wicket Empire is a cricket manager game for Android where you play every delivery, win live auctions against seven rival owners, and run a club, a T20 franchise and your country in one fifty-year career.</p>
+      <div class="cta-row">
+        <a class="btn btn-gold" href="https://play.google.com/store/apps/details?id=com.wicketempire.wicketmanager" target="_blank" rel="noopener"><svg class="play" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>Get it on Google Play</a>
+        <a class="btn btn-ghost" href="#trailer">Watch the trailer</a>
+      </div>
+      <p class="fine">Free · plays offline · no account · English, Hindi, Bengali &amp; Afrikaans</p>
+    </div>
+    <div class="stage" aria-hidden="true">
+      <div class="phone p1"><img src="img/screen-match.jpg" alt="" loading="eager"></div>
+      <div class="phone p2"><img src="img/screen-auction.jpg" alt="" loading="lazy"></div>
+      <span class="tag t1">16 off the last over</span>
+      <span class="tag t2">Going twice… 🔨</span>
+    </div>
   </div>
 </header>
 
-<div class="wrap">
-
-  <section>
-    <h2>Career mode is here</h2>
-    <p style="color:#cde7d2; font-size:.97rem;">Make a manager, take a job, and let the calendar run — from the 2026-27 season until they retire you at 70. Ball-by-ball cricket management, free on Android.</p>
-    <a class="btn btn-gold" href="https://play.google.com/store/apps/details?id=com.wicketempire.wicketmanager" target="_blank" rel="noopener">▶ Get it free on Google Play</a>
-    <a class="btn btn-ghost" href="https://discord.gg/gq6vCsMCK2" target="_blank" rel="noopener">Join the Discord</a>
-  </section>
-
-  <section>
-    <h2>How a career works</h2>
-    <div class="steps">
-      <div class="step">
-        <strong>Make your manager</strong>
-        <p>Name, nationality, age, background — ex-player, coach, analyst or businessman, each with a perk. Your country's side and leagues come calling more often.</p>
-      </div>
-      <div class="step">
-        <strong>Collect jobs, don't just switch them</strong>
-        <p>Offers come from your reputation. Hold a club, a T20 franchise and a national side at the same time, each in its own window of the year. Sacked from one? You keep the rest.</p>
-      </div>
-      <div class="step">
-        <strong>Play until they retire you</strong>
-        <p>Auctions every year, bilateral series, a T20 World Championship every two years and a 50-over one every four, world rankings, your club players called up once you run the national side too. Retire at 70 with a legacy ceremony.</p>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <h2>Watch the trailer</h2>
-    <div class="video">
-      <iframe src="https://www.youtube-nocookie.com/embed/7CXdzDD_tmw" title="Wicket Empire — official trailer"
-        loading="lazy" allow="accelerometer; encrypted-media; picture-in-picture" allowfullscreen></iframe>
-    </div>
-  </section>
-
-  <section>
-    <h2>What you get</h2>
-    <div class="features">
-      <div><span>▸</span>Ball-by-ball matches in a broadcast-style Match Center — scorebug, worm chart, pressure chases</div>
-      <div><span>▸</span>Live player auctions — going once… going twice… snipe at the hammer</div>
-      <div><span>▸</span>A whole career, to age 70: club, franchise and country, a board for each, and every one of them <em>will</em> sack you</div>
-      <div><span>▸</span>Transfers, academy, sponsors, Daily Challenge streaks, Hall of Fame, share cards</div>
-      <div><span>▸</span>T10, T20 and 50-over formats · 80+ achievements · fictional names, all editable · plays offline · free</div>
-    </div>
-  </section>
-
-  <section>
-    <h2>Screenshots</h2>
-    <div class="shots">
-      <img src="img/12-auction-bidding.jpg" alt="Auction bidding war" loading="lazy">
-      <img src="img/09-live-six.jpg" alt="Live match — six!" loading="lazy">
-      <img src="img/10-victory.jpg" alt="Victory celebration" loading="lazy">
-    </div>
-  </section>
-
-  <section>
-    <h2>Talk to the dev</h2>
-    <p style="color:#cde7d2; font-size:.97rem;">Wicket Empire is built solo by Muppetdev. Bugs, ideas, feature requests — the Discord is where the game gets shaped.</p>
-    <a class="btn btn-green" href="https://discord.gg/gq6vCsMCK2" target="_blank" rel="noopener">Join the Discord</a>
-    <a class="btn btn-ghost" href="https://www.youtube.com/@MuppetDevS" target="_blank" rel="noopener">YouTube — dev videos &amp; shorts</a>
-  </section>
-
-  <footer>
-    © 2026 WicketEmpire ·
-    <a href="https://sites.google.com/view/wicketmanager-privacy/home" target="_blank" rel="noopener">Privacy policy</a>
-  </footer>
-
+<div class="strip">
+  <div class="wrap">
+    <div><b>Every</b><span>ball, live</span></div>
+    <div><b>40</b><span>lots per auction</span></div>
+    <div><b>3</b><span>jobs at once</span></div>
+    <div><b>50</b><span>year career</span></div>
+    <div><b>100%</b><span>offline &amp; free</span></div>
+  </div>
 </div>
 
+<section id="trailer">
+  <div class="wrap">
+    <div class="sec-head rv"><span class="kicker">Official trailer</span><h2>Fifty years.<br>One career.</h2></div>
+    <div class="video rv">
+      <iframe src="https://www.youtube-nocookie.com/embed/7CXdzDD_tmw" title="Wicket Empire — official trailer" loading="lazy" allow="accelerometer; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+    </div>
+  </div>
+</section>
+
+<section id="features" style="padding-top:0">
+  <div class="wrap">
+    <div class="feature rv">
+      <div class="copy">
+        <span class="kicker">The match centre</span>
+        <h2>Play every ball.</h2>
+        <p class="lead">No dice roll. A broadcast-style scorebug, a live lower-third, and a decision on every delivery.</p>
+        <ul>
+          <li>Read the pitch and the forecast, then win or lose the toss for real</li>
+          <li>Pick your bowler every over, react to the conditions, give the team talk at the break</li>
+          <li>Captain's Moments: big calls at big moments, with consequences</li>
+          <li>Rain interruptions with proper DLS targets, and chase pressure that makes weak batters wobble</li>
+        </ul>
+        <span class="callout">Highlights mode for when you're short on time</span>
+      </div>
+      <div class="shot"><div class="phone"><img src="img/screen-match.jpg" alt="Wicket Empire match centre: scorebug, lower-third and match controls" loading="lazy"></div></div>
+    </div>
+
+    <div class="feature flip rv">
+      <div class="copy">
+        <span class="kicker">The auction</span>
+        <h2>Going once…<br>going twice…</h2>
+        <p class="lead">Every franchise season opens with a live auction. Retain your core, then outbid seven rival owners for the best of forty lots with a fixed purse.</p>
+        <ul>
+          <li>Rivals bid to real valuations and real squad needs, and they bid back</li>
+          <li>Power bids to shake out anyone who isn't serious</li>
+          <li>Marquee lots, bidding wars, and a summary that tells you who overpaid</li>
+        </ul>
+        <span class="callout">Don't blink first</span>
+      </div>
+      <div class="shot"><div class="phone"><img src="img/screen-auction.jpg" alt="Wicket Empire live player auction" loading="lazy"></div></div>
+    </div>
+
+    <div class="feature rv" id="career">
+      <div class="copy">
+        <span class="kicker">Career mode</span>
+        <h2>Club. Franchise.<br>Country.</h2>
+        <p class="lead">Make your manager, start at a club, and earn the bigger jobs. Offers follow your reputation, and the phone rings when you've earned it.</p>
+        <ul>
+          <li>Hold three jobs at once, each in its own window of the year</li>
+          <li>Your club players get called up by their country: one player, one career, everywhere they play</li>
+          <li>A T20 World Championship every two years, a 50-over World Cup every four, world rankings that decide who qualifies</li>
+          <li>Get sacked from one job and the rest of your career carries on. Never a dead end</li>
+        </ul>
+        <span class="callout">Retire at 70 with a legacy, or keep going</span>
+      </div>
+      <div class="shot"><div class="phone"><img src="img/screen-offers.jpg" alt="Wicket Empire job offers: a franchise and a national side" loading="lazy"></div></div>
+    </div>
+
+    <div class="feature flip rv">
+      <div class="copy">
+        <span class="kicker">The board</span>
+        <h2>Lift the title.<br>Or get sacked trying.</h2>
+        <p class="lead">Boards set objectives, sponsors set conditions, and confidence rises and falls with every result. Every board in the game will sack you eventually. Outlast them.</p>
+        <ul>
+          <li>Transfers, contracts, form and morale, injuries, a youth academy where nobodies become legends</li>
+          <li>Sponsor deals with real trade-offs, gate receipts, merchandise, a finances card that tells you why</li>
+          <li>80+ achievements, career records, a Hall of Fame, season history you can look back on</li>
+        </ul>
+      </div>
+      <div class="shot"><div class="phone"><img src="img/screen-trophy.jpg" alt="Wicket Empire world champions trophy lift" loading="lazy"></div></div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head rv"><span class="kicker">How a career works</span><h2>Earn your positions.</h2></div>
+    <div class="steps rv">
+      <div class="step"><h3>Make your manager</h3><p>Name, nationality, age and a background with a real perk: ex-player, coach, analyst or businessman. Your own nation's side and leagues call more often.</p></div>
+      <div class="step"><h3>Collect jobs, don't just switch them</h3><p>Start at a club. A T20 franchise and a national side arrive as offers when your reputation earns them, and you can hold all three.</p></div>
+      <div class="step"><h3>Play until they retire you</h3><p>Auctions every year, bilateral series, world events, call-ups, sackings. Fifty years, then a legacy ceremony, then keep playing if you want.</p></div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head rv"><span class="kicker">Screens</span><h2>Built for a phone,<br>not shrunk to one.</h2></div>
+    <div class="screens rv">
+      <div class="phone"><img src="img/screen-match.jpg" alt="Match centre" loading="lazy"></div>
+      <div class="phone"><img src="img/screen-auction.jpg" alt="Auction" loading="lazy"></div>
+      <div class="phone"><img src="img/screen-offers.jpg" alt="Job offers" loading="lazy"></div>
+      <div class="phone"><img src="img/screen-callups.jpg" alt="National call-ups" loading="lazy"></div>
+      <div class="phone"><img src="img/screen-trophy.jpg" alt="World champions" loading="lazy"></div>
+    </div>
+    <div class="grid rv">
+      <div class="cell"><b>Plays offline</b><span>No account, no sign-in, auto-saves every ball. Pick up exactly where life interrupted you.</span></div>
+      <div class="cell"><b>Free, and fair</b><span>Optional rewarded ads and one at the end of a season. No energy timers, no paywalls, nothing to buy to win.</span></div>
+      <div class="cell"><b>Your cricket world</b><span>Fictional names, every one editable. Export a name pack, edit it, import it, or grab one the community shared.</span></div>
+      <div class="cell"><b>Four languages</b><span>English, Hindi, Bengali and Afrikaans, switchable in Settings.</span></div>
+      <div class="cell"><b>Daily Challenge</b><span>One chase a day, one attempt, build a streak. Share the result card anywhere.</span></div>
+      <div class="cell"><b>T10 · T20 · 50-over</b><span>Club leagues with cups and Finals, franchise T20, bilateral series and world events.</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="community" id="community">
+  <div class="wrap">
+    <div class="rv">
+      <span class="kicker">Community</span>
+      <h2>Tell me what<br>to build next.</h2>
+      <p class="lead">Wicket Empire is built by one person. Every update since the first beta has come from players. Bugs, ideas, name packs, arguments about DLS: the Discord is where the game gets shaped.</p>
+      <div class="links-row">
+        <a class="btn btn-gold" href="https://discord.gg/gq6vCsMCK2" target="_blank" rel="noopener">Join the Discord</a>
+        <a class="btn btn-ghost" href="https://www.youtube.com/@MuppetDevS" target="_blank" rel="noopener">YouTube: dev videos &amp; shorts</a>
+      </div>
+    </div>
+    <div class="dev rv">
+      <img src="img/icon.png" alt="">
+      <div><strong>Muppetdev · WicketEmpire</strong><small>Solo developer. Formerly "Wicket Manager": same game, new name.</small></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 WicketEmpire · Wicket Empire: Cricket Manager</span>
+    <span><a href="https://sites.google.com/view/wicketmanager-privacy/home" target="_blank" rel="noopener">Privacy policy</a> · <a href="https://play.google.com/store/apps/details?id=com.wicketempire.wicketmanager" target="_blank" rel="noopener">Google Play</a></span>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var els = document.querySelectorAll(".rv");
+    if (!("IntersectionObserver" in window)) { els.forEach(function (e) { e.classList.add("in"); }); return; }
+    var io = new IntersectionObserver(function (entries) { entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); } }); }, { threshold: 0.12 });
+    els.forEach(function (e) { io.observe(e); });
+  })();
+</script>
 </body>
 </html>
