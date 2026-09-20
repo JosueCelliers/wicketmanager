@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Wicket Empire — free cricket manager game for Android (2026)</title>
-<meta name="description" content="Wicket Empire is a new cricket manager game for Android: play every ball, win live auctions against rival owners, and run a club, a T20 franchise and your country in one 50-year career. Free.">
-<meta property="og:title" content="Wicket Empire — free cricket manager game, career mode out now">
-<meta property="og:description" content="Play every ball. Win the auction. Run a club, a franchise and your country at once. Free on Android.">
+<title>Wicket Empire — free cricket manager &amp; player career game for Android (2026)</title>
+<meta name="description" content="Wicket Empire is a free cricket game for Android with two careers: be the cricketer — read every ball before you play it and climb from school to your country — or be the manager: win live auctions and run a club, a T20 franchise and a national side in one fifty-year career.">
+<meta property="og:title" content="Wicket Empire — read the ball, then play it. Two careers, free on Android.">
+<meta property="og:description" content="Be the cricketer or be the manager. Every ball is read before you play it. School to country, club to World Cup. Free on Android.">
 <meta property="og:image" content="https://josuecelliers.github.io/wicketmanager/img/og-card.jpg">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://josuecelliers.github.io/wicketmanager/">
@@ -107,6 +107,13 @@
   .feature.flip .phone { transform: rotate(2deg); }
   .callout { display: inline-block; margin-top: 18px; font-family: var(--display); font-weight: 800; text-transform: uppercase; letter-spacing: .04em; font-size: 22px; color: var(--gold); border-left: 4px solid var(--gold); padding-left: 12px; }
 
+  /* the two careers */
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .two a { display: block; text-decoration: none; background: rgba(255,255,255,0.035); border: 1px solid var(--line); border-radius: 18px; padding: 26px 22px 24px; transition: border-color .15s ease, background .15s ease; }
+  .two a:hover { border-color: rgba(245,184,46,0.55); background: rgba(255,255,255,0.06); }
+  .two h3 { margin: 10px 0 8px; }
+  .two p { color: var(--cream-dim); font-size: 16px; }
+
   /* steps */
   .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; counter-reset: step; }
   .step { background: rgba(255,255,255,0.035); border: 1px solid var(--line); border-radius: 18px; padding: 26px 22px 24px; position: relative; }
@@ -153,7 +160,7 @@
     .feature, .feature.flip { grid-template-columns: 1fr; }
     .feature.flip .copy { order: 0; }
     .feature .shot { order: 2; }
-    .steps, .grid { grid-template-columns: 1fr; }
+    .two, .steps, .grid { grid-template-columns: 1fr; }
     .community .wrap { grid-template-columns: 1fr; }
   }
 </style>
@@ -163,7 +170,7 @@
 <nav>
   <div class="wrap">
     <a class="brand" href="#top"><img src="img/icon.png" alt="">Wicket <b>Empire</b></a>
-    <div class="links"><a href="#trailer">Trailer</a><a href="#features">Features</a><a href="#career">Career</a><a href="#community">Community</a></div>
+    <div class="links"><a href="#trailer">Trailer</a><a href="#player">Player career</a><a href="#manager">Manager</a><a href="#world">The world</a><a href="#community">Community</a></div>
     <a class="btn btn-gold btn-sm" href="https://play.google.com/store/apps/details?id=com.wicketempire.wicketmanager" target="_blank" rel="noopener"><svg class="play" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>Get it free</a>
   </div>
 </nav>
@@ -171,30 +178,30 @@
 <header class="hero" id="top">
   <div class="wrap">
     <div>
-      <span class="kicker">New · Free on Google Play</span>
+      <span class="kicker">1.7 · Free on Google Play</span>
       <h1>Every ball<br>is <em>yours.</em></h1>
-      <p class="lead">Wicket Empire is a cricket manager game for Android where you play every delivery, win live auctions against seven rival owners, and run a club, a T20 franchise and your country in one fifty-year career.</p>
+      <p class="lead">Wicket Empire is a cricket game for Android with two careers in it. Be the cricketer: read every ball before you play it, fight for your place, and climb from school cricket to your country. Or be the manager: win live auctions against seven rival owners and run a club, a T20 franchise and a national side in one fifty-year career.</p>
       <div class="cta-row">
         <a class="btn btn-gold" href="https://play.google.com/store/apps/details?id=com.wicketempire.wicketmanager" target="_blank" rel="noopener"><svg class="play" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>Get it on Google Play</a>
         <a class="btn btn-ghost" href="#trailer">Watch the trailer</a>
       </div>
-      <p class="fine">Free · plays offline · no account · English, Hindi, Bengali &amp; Afrikaans</p>
+      <p class="fine">Free · plays offline · no account · dark mode · English, Hindi, Bengali &amp; Afrikaans</p>
     </div>
     <div class="stage" aria-hidden="true">
-      <div class="phone p1"><img src="img/screen-match.jpg" alt="" loading="eager"></div>
+      <div class="phone p1"><img src="img/pc-crease.jpg" alt="" loading="eager"></div>
       <div class="phone p2"><img src="img/screen-auction.jpg" alt="" loading="lazy"></div>
-      <span class="tag t1">16 off the last over</span>
-      <span class="tag t2">Going twice… 🔨</span>
+      <span class="tag t1">Dangerous · see it off</span>
+      <span class="tag t2">Going twice…</span>
     </div>
   </div>
 </header>
 
 <div class="strip">
   <div class="wrap">
-    <div><b>Every</b><span>ball, live</span></div>
-    <div><b>40</b><span>lots per auction</span></div>
-    <div><b>3</b><span>jobs at once</span></div>
-    <div><b>50</b><span>year career</span></div>
+    <div><b>Every</b><span>ball, read then played</span></div>
+    <div><b>2</b><span>careers in one game</span></div>
+    <div><b>218</b><span>sides · 42 countries</span></div>
+    <div><b>3,488</b><span>players with a past</span></div>
     <div><b>100%</b><span>offline &amp; free</span></div>
   </div>
 </div>
@@ -205,11 +212,86 @@
     <div class="video rv">
       <iframe src="https://www.youtube-nocookie.com/embed/7CXdzDD_tmw" title="Wicket Empire — official trailer" loading="lazy" allow="accelerometer; encrypted-media; picture-in-picture" allowfullscreen></iframe>
     </div>
+    <div class="two rv" style="margin-top:28px">
+      <a href="#player"><span class="kicker">Be the cricketer</span><h3>The Player Career</h3><p>One cricketer, from a six-ball trial to the Hall of Fame. Read the ball, choose the shot, earn the call-up, wear the armband.</p></a>
+      <a href="#manager"><span class="kicker">Be the manager</span><h3>The Manager Career</h3><p>Pick the side, win the auction, answer to the board. A club, a franchise and a country, held at once.</p></a>
+    </div>
   </div>
 </section>
 
-<section id="features" style="padding-top:0">
+<section id="player" style="padding-top:0">
   <div class="wrap">
+    <div class="sec-head rv"><span class="kicker">The Player Career</span><h2>Read the ball.<br>Then play it.</h2></div>
+
+    <div class="feature rv">
+      <div class="copy">
+        <span class="kicker">The delivery reveal · new in 1.7</span>
+        <h2>See it coming.</h2>
+        <p class="lead">Every delivery is read before you face it — <b>loose</b>, <b>testing</b> or <b>dangerous</b>, with the ball in words: "full and swinging in late", "the wrong 'un, at the stumps". Then you set the dial and play. A wicket is never something that just happened to you.</p>
+        <ul>
+          <li>About one ball in eight is hidden — "he hides it, no read" — and an elite wrist-spinner hides more than a club medium-pacer. Reading him is a skill, and there is a skill lane for it</li>
+          <li>The cricket underneath is exactly as honest as before: ignore the read and you bat the same game. Only playing the ball you were shown changes anything</li>
+          <li>Bat blind — reads off — for one and a half times the XP. A hard mode you choose</li>
+          <li>Hold the ball button to keep the balls coming; it slows down by itself for the big moments</li>
+        </ul>
+        <span class="callout">Attack the loose ones · see off the dangerous</span>
+      </div>
+      <div class="shot"><div class="phone"><img src="img/pc-crease.jpg" alt="Wicket Empire crease: the delivery read — dangerous, dipping and gripping on a length — above the batting dial" loading="lazy"></div></div>
+    </div>
+
+    <div class="feature flip rv">
+      <div class="copy">
+        <span class="kicker">The ladder</span>
+        <h2>School. Domestic.<br>Franchise. Country.</h2>
+        <p class="lead">Start at sixteen in school cricket, or at seventeen on a domestic contract. Your place in the side is a sum you can see — rating, form, recent runs, promise — and the man ahead of you is named, with the gap.</p>
+        <ul>
+          <li>A big season opens the door young: score like an eighty-five and the selectors look at you whatever your rating says. Stop performing and the level sends you back</li>
+          <li>Three formats in every season — T20, fifty-over, and the four-day round of first-class cricket at domestic level. Tests come with the country</li>
+          <li>Choose the formats you play: retire from one for a record that says one thing, and one return in a career</li>
+          <li>Three franchises bid for you. Your country picks you. Nobody else does</li>
+        </ul>
+        <span class="callout">Not selected is a moment, not a line</span>
+      </div>
+      <div class="shot"><div class="phone"><img src="img/pc-hub.jpg" alt="Wicket Empire player career dashboard: your place in the queue, what the selectors want to see, the weekly challenge" loading="lazy"></div></div>
+    </div>
+
+    <div class="feature rv">
+      <div class="copy">
+        <span class="kicker">Skills, and the armband</span>
+        <h2>Your tree.<br>Your call.</h2>
+        <p class="lead">Four lanes a side, every node a thing that happens at the crease rather than a number on a card — and the fourth lane grants <em>information</em>: what the bowler is trying to do, the field they have set, the one thing driving your out-chance right now.</p>
+        <ul>
+          <li>Getting in, matchups, tempo, the read — with the bat. The new ball, control, the close, the read — with the ball</li>
+          <li>Captain? Pick who bowls the next over, set the field, tell the attack how hard to hunt. An over at a time when you are not bowling</li>
+          <li>A re-cut every winter: take a node back and spend its points somewhere else</li>
+          <li>Ceilings that hold: a career is a story about a player, not a shop</li>
+        </ul>
+        <span class="callout">Information cannot be bought. It can be learned</span>
+      </div>
+      <div class="shot"><div class="phone"><img src="img/pc-skills.jpg" alt="Wicket Empire skill tree: lanes of nodes, each a thing that happens at the crease" loading="lazy"></div></div>
+    </div>
+
+    <div class="feature flip rv">
+      <div class="copy">
+        <span class="kicker">The record</span>
+        <h2>Every innings<br>counts.</h2>
+        <p class="lead">A rating for every innings and every spell, a report that says why the number moved, a record book split the way cricket splits it — league, cup, first-class, international — and a son who can pick up where you left off.</p>
+        <ul>
+          <li>The six-ball trial before you even have a name, then a career that remembers all of it</li>
+          <li>Milestones, duels with the bowlers who have your number, momentum you can feel</li>
+          <li>The weekly challenge: five seasons, one measured par, a result card you can share</li>
+          <li>Retire at 34 or play until the body decides at 43 — then the Hall of Fame, and your son</li>
+        </ul>
+      </div>
+      <div class="shot"><div class="phone"><img src="img/pc-report.jpg" alt="Wicket Empire innings report: the debut, the dismissal, the result, the rating and why" loading="lazy"></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="manager" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head rv"><span class="kicker">The Manager Career</span><h2>Pick the side.<br>Win the auction.</h2></div>
+
     <div class="feature rv">
       <div class="copy">
         <span class="kicker">The match centre</span>
@@ -217,8 +299,8 @@
         <p class="lead">No dice roll. A broadcast-style scorebug, a live lower-third, and a decision on every delivery.</p>
         <ul>
           <li>Read the pitch and the forecast, then win or lose the toss for real</li>
-          <li>Pick your bowler every over, react to the conditions, give the team talk at the break</li>
-          <li>Captain's Moments: big calls at big moments, with consequences</li>
+          <li>Pick your bowler every over, set the field, react to the conditions, give the team talk at the break</li>
+          <li>Three XIs from one squad: a team sheet reads each man's record in the format he is being picked for</li>
           <li>Rain interruptions with proper DLS targets, and chase pressure that makes weak batters wobble</li>
         </ul>
         <span class="callout">Highlights mode for when you're short on time</span>
@@ -241,15 +323,15 @@
       <div class="shot"><div class="phone"><img src="img/screen-auction.jpg" alt="Wicket Empire live player auction" loading="lazy"></div></div>
     </div>
 
-    <div class="feature rv" id="career">
+    <div class="feature rv">
       <div class="copy">
-        <span class="kicker">Career mode</span>
+        <span class="kicker">Three jobs</span>
         <h2>Club. Franchise.<br>Country.</h2>
         <p class="lead">Make your manager, start at a club, and earn the bigger jobs. Offers follow your reputation, and the phone rings when you've earned it.</p>
         <ul>
           <li>Hold three jobs at once, each in its own window of the year</li>
           <li>Your club players get called up by their country: one player, one career, everywhere they play</li>
-          <li>A T20 World Championship every two years, a 50-over World Cup every four, world rankings that decide who qualifies</li>
+          <li>A T20 World Championship every two years, a 50-over World Cup every four, Test series on the summer calendar, world rankings that decide who qualifies</li>
           <li>Get sacked from one job and the rest of your career carries on. Never a dead end</li>
         </ul>
         <span class="callout">Retire at 70 with a legacy, or keep going</span>
@@ -265,7 +347,7 @@
         <ul>
           <li>Transfers, contracts, form and morale, injuries, a youth academy where nobodies become legends</li>
           <li>Sponsor deals with real trade-offs, gate receipts, merchandise, a finances card that tells you why</li>
-          <li>80+ achievements, career records, a Hall of Fame, season history you can look back on</li>
+          <li>130+ achievements, career records, a Hall of Fame, season history you can look back on</li>
         </ul>
       </div>
       <div class="shot"><div class="phone"><img src="img/screen-trophy.jpg" alt="Wicket Empire world champions trophy lift" loading="lazy"></div></div>
@@ -273,13 +355,44 @@
   </div>
 </section>
 
+<section id="world" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head rv"><span class="kicker">The world · new in 1.7</span><h2>A world that<br>keeps score.</h2></div>
+    <div class="feature rv">
+      <div class="copy">
+        <span class="kicker">One world, every career</span>
+        <h2>Names you can edit.<br>Records you can't fake.</h2>
+        <p class="lead">Forty-two countries, fifty-six franchises, a hundred and twenty clubs, and 3,488 players who each arrive with a career that already happened — and keep playing it whether you are watching or not.</p>
+        <ul>
+          <li>Every player's record in every format, world rankings, country records: played, won, lost, drawn, tied</li>
+          <li>A scorecard for every match in the world, yours or not — tap any result</li>
+          <li>Name packs that map by identity, so a renamed player keeps his stats and survives every update. Export, edit, import, share</li>
+          <li>Fictional names, real cricket. Edit the crests and the names, keep the numbers</li>
+        </ul>
+      </div>
+      <div class="shot"><div class="phone"><img src="img/pc-world.jpg" alt="Wicket Empire world tab: rankings, records and the every-player browser" loading="lazy"></div></div>
+    </div>
+  </div>
+</section>
+
 <section style="padding-top:0">
   <div class="wrap">
-    <div class="sec-head rv"><span class="kicker">How a career works</span><h2>Earn your positions.</h2></div>
+    <div class="sec-head rv"><span class="kicker">How the player career works</span><h2>Six balls,<br>then a name.</h2></div>
+    <div class="steps rv">
+      <div class="step"><h3>Face six balls</h3><p>Before there is a form, there is a trial: six balls with the bat and six with the ball. Then pick an archetype — the accumulator, the destroyer, the seamer, the spinner — and its ceilings are yours.</p></div>
+      <div class="step"><h3>Fight for your place</h3><p>Your standing is a sum you can see, every matchday. Runs and wickets move it. When you are left out, the game tells you who went in ahead of you and by how much.</p></div>
+      <div class="step"><h3>Climb, or be sent back</h3><p>A monster season earns the next level whatever your rating says; a bench-warming one costs it. Franchise money, a country's cap, the armband — and a son to carry the name when you stop.</p></div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head rv"><span class="kicker">How the manager career works</span><h2>Earn your positions.</h2></div>
     <div class="steps rv">
       <div class="step"><h3>Make your manager</h3><p>Name, nationality, age and a background with a real perk: ex-player, coach, analyst or businessman. Your own nation's side and leagues call more often.</p></div>
       <div class="step"><h3>Collect jobs, don't just switch them</h3><p>Start at a club. A T20 franchise and a national side arrive as offers when your reputation earns them, and you can hold all three.</p></div>
-      <div class="step"><h3>Play until they retire you</h3><p>Auctions every year, bilateral series, world events, call-ups, sackings. Fifty years, then a legacy ceremony, then keep playing if you want.</p></div>
+      <div class="step"><h3>Play until they retire you</h3><p>Auctions every year, bilateral series, Test summers, world events, call-ups, sackings. Fifty years, then a legacy ceremony, then keep playing if you want.</p></div>
     </div>
   </div>
 </section>
@@ -288,6 +401,12 @@
   <div class="wrap">
     <div class="sec-head rv"><span class="kicker">Screens</span><h2>Built for a phone,<br>not shrunk to one.</h2></div>
     <div class="screens rv">
+      <div class="phone"><img src="img/pc-crease.jpg" alt="The crease, with the delivery read" loading="lazy"></div>
+      <div class="phone"><img src="img/pc-hub.jpg" alt="The player's dashboard" loading="lazy"></div>
+      <div class="phone"><img src="img/pc-skills.jpg" alt="The skill tree" loading="lazy"></div>
+      <div class="phone"><img src="img/pc-report.jpg" alt="The innings report" loading="lazy"></div>
+      <div class="phone"><img src="img/pc-world.jpg" alt="The world" loading="lazy"></div>
+      <div class="phone"><img src="img/pc-create.jpg" alt="Creating a player" loading="lazy"></div>
       <div class="phone"><img src="img/screen-match.jpg" alt="Match centre" loading="lazy"></div>
       <div class="phone"><img src="img/screen-auction.jpg" alt="Auction" loading="lazy"></div>
       <div class="phone"><img src="img/screen-offers.jpg" alt="Job offers" loading="lazy"></div>
@@ -295,12 +414,15 @@
       <div class="phone"><img src="img/screen-trophy.jpg" alt="World champions" loading="lazy"></div>
     </div>
     <div class="grid rv">
-      <div class="cell"><b>Plays offline</b><span>No account, no sign-in, auto-saves every ball. Pick up exactly where life interrupted you.</span></div>
+      <div class="cell"><b>Plays offline</b><span>No account, no sign-in, auto-saves every ball. Pick up exactly where life interrupted you — mid-innings included.</span></div>
       <div class="cell"><b>Free, and fair</b><span>Optional rewarded ads and an occasional ad at an innings break, never mid-over. No energy timers, no paywalls, nothing to buy to win.</span></div>
-      <div class="cell"><b>Your cricket world</b><span>Fictional names, every one editable. Export a name pack, edit it, import it, or grab one the community shared.</span></div>
+      <div class="cell"><b>Your cricket world</b><span>Fictional names, every one editable. Name packs map by identity, so your edits survive every update. Export, import, share.</span></div>
+      <div class="cell"><b>T10 · T20 · 50-over · Tests</b><span>Club leagues with cups and finals, the four-day round, franchise T20, Test series, world events.</span></div>
+      <div class="cell"><b>Dark mode</b><span>The whole game turned over by luminance, not by guesswork. Switch it in Settings.</span></div>
+      <div class="cell"><b>Daily &amp; weekly challenge</b><span>One chase a day, one attempt, a streak. A weekly five-season career against a measured par, with a card to share.</span></div>
       <div class="cell"><b>Four languages</b><span>English, Hindi, Bengali and Afrikaans, switchable in Settings.</span></div>
-      <div class="cell"><b>Daily Challenge</b><span>One chase a day, one attempt, build a streak. Share the result card anywhere.</span></div>
-      <div class="cell"><b>T10 · T20 · 50-over</b><span>Club leagues with cups and Finals, franchise T20, bilateral series and world events.</span></div>
+      <div class="cell"><b>Made for a phone</b><span>One thumb, one big ball button, a dial that says what the shot costs. Hold to keep playing.</span></div>
+      <div class="cell"><b>Honest numbers</b><span>The dial's out-chance is the one the ball uses. Not selected says who went ahead of you and by how much.</span></div>
     </div>
   </div>
 </section>
@@ -310,7 +432,7 @@
     <div class="rv">
       <span class="kicker">Community</span>
       <h2>Tell me what<br>to build next.</h2>
-      <p class="lead">Wicket Empire is built by one person. Every update since the first beta has come from players. Bugs, ideas, name packs, arguments about DLS: the Discord is where the game gets shaped.</p>
+      <p class="lead">Wicket Empire is built by one person. Every update since the first beta has come from players — the delivery reveal, the ladder that reads your season, the formats you play, the four-day round. Bugs, ideas, name packs, arguments about DLS: the Discord is where the game gets shaped.</p>
       <div class="links-row">
         <a class="btn btn-gold" href="https://discord.gg/gq6vCsMCK2" target="_blank" rel="noopener">Join the Discord</a>
         <a class="btn btn-ghost" href="https://www.youtube.com/@MuppetDevS" target="_blank" rel="noopener">YouTube</a>
